@@ -1,0 +1,41 @@
+<div class="bg-light min-vh-70 d-flex flex-row align-items-center">
+    <c-container>
+      <c-row class="justify-content-center">
+        <c-col lg="7" md="9" xl="6">
+          <c-card class="mx-4">
+            <c-card-body class="p-4">
+              <form cForm [formGroup]="myForm" (ngSubmit)="onSubmit()">
+                <div *ngIf="f['nameCompany'].touched && (f['nameCompany']['errors'] && f['nameCompany']['errors']['required'])" class="error-message">
+                  Name company is required
+                </div>
+                <c-input-group class="mb-3">
+                  <span cInputGroupText>
+                    <svg cIcon name="cil-people"></svg>
+                  </span>
+                  <input autoComplete="name" cFormControl placeholder="Nome da empresa" formControlName="nameCompany"/>
+                </c-input-group>
+
+                <div *ngIf="f['urlCompany'].touched && (f['urlCompany']['errors'] && f['urlCompany']['errors']['required'])" class="error-message">
+                  Url company is required
+                </div>
+                <div *ngIf="f['urlCompany'].touched && (f['urlCompany']['errors'] && f['urlCompany']['errors']['pattern'])" class="error-message">
+                  Insert a valid URL!
+                </div>
+                <c-input-group class="mb-3">
+                  <span cInputGroupText>
+                    <svg cIcon name="cil-link"></svg>
+                  </span>
+                  <input autoComplete="name" cFormControl placeholder="Url" formControlName="urlCompany"/>
+                </c-input-group>
+
+                <div class="d-grid">
+                  <button cButton type="submit" color="success">Criar empresa!</button>
+                </div>
+              </form>
+            </c-card-body>
+          </c-card>
+        </c-col>
+      </c-row>
+    </c-container>
+  </div>
+  

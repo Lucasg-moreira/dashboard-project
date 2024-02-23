@@ -70,6 +70,12 @@ const routes: Routes = [
         loadChildren: () =>
           import('./views/pages/pages.module').then((m) => m.PagesModule)
       },
+      {
+        path: 'empresas',
+        title: 'Empresas',
+            loadChildren: () =>
+              import('./views/company/company.module').then((m) => m.CompanyModule),
+      },
     ]
   },
   {
@@ -100,7 +106,7 @@ const routes: Routes = [
       title: 'Register Page'
     }
   },
-  {path: '**', redirectTo: 'dashboard'}
+  {path: '**', redirectTo: '404'}
 ];
 
 @NgModule({

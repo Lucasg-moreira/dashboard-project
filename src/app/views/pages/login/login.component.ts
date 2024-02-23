@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   public myForm: FormGroup;
-  private users? = null;
 
   constructor(
     private router: Router,
@@ -32,8 +31,6 @@ export class LoginComponent {
   onLogin() {
     const { username, passwd } = this.f;
 
-    console.log(username, passwd);
-    
     this.httpService.getUsers().subscribe(users => {
       const isLoginValid = users.find(u => u.username === username.value && u.passwd === passwd.value)
 
@@ -52,6 +49,4 @@ export class LoginComponent {
       duration: 3000
     })
   }
-
-
 }

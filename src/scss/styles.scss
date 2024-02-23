@@ -22,5 +22,10 @@ $enable-rtl: true;
 // If you want to add something do it here
 @import "custom";
 
+.error-message {
+    color: red;
+    font-size: 0.875rem;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
