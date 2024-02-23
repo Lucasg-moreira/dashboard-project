@@ -33,10 +33,17 @@ import {
   SharedModule,
   SidebarModule,
   TabsModule,
-  UtilitiesModule
+  UtilitiesModule,
 } from '@coreui/angular';
 
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+import { HttpRequest } from 'src/app/services/http-request.service' 
+
 import { IconModule, IconSetService } from '@coreui/icons-angular';
+import { HttpClientModule } from '@angular/common/http';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -72,7 +79,9 @@ const APP_CONTAINERS = [
     BadgeModule,
     ListGroupModule,
     CardModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+    MatSnackBarModule,
+    HttpClientModule,
   ],
   providers: [
     {
@@ -80,7 +89,9 @@ const APP_CONTAINERS = [
       useClass: HashLocationStrategy
     },
     IconSetService,
-    Title
+    Title,
+    HttpRequest,
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })
