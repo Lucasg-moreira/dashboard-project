@@ -1,0 +1,71 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "lcuas",
+      "email": "a title",
+      "passwd": 100
+    },
+    {
+      "id": "2",
+      "title": "another title",
+      "views": 200
+    },
+    {
+      "id": "e1fd",
+      "username": "lucas",
+      "email": "email@a.com",
+      "passwd": "123456789"
+    },
+    {
+      "id": "c6ab",
+      "username": "aaa",
+      "email": "a@gmail.com",
+      "passwd": "aaa",
+      "repeatPass": "aaa"
+    },
+    {
+      "id": "eaf8",
+      "username": "aaa",
+      "email": "a.a@gmail.com",
+      "passwd": "123123",
+      "repeatPass": "123123"
+    },
+    {
+      "id": "d974",
+      "username": "",
+      "email": "",
+      "passwd": "asdf",
+      "repeatedPass": ""
+    },
+    {
+      "id": "a127",
+      "username": "lucas",
+      "email": "lucas@admin",
+      "passwd": "123",
+      "repeatedPass": "123"
+    },
+    {
+      "id": "c856",
+      "username": "lucas",
+      "email": "lucas@admin",
+      "passwd": "123",
+      "repeatedPass": "123"
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "text": "a comment about post 1",
+      "postId": "1"
+    },
+    {
+      "id": "2",
+      "text": "another comment about post 1",
+      "postId": "1"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
