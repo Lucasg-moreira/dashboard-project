@@ -5,15 +5,26 @@
         <c-card-group>
           <c-card class="p-4">
             <c-card-body>
-              <form cForm>
+              <form cForm [formGroup]="myForm" (ngSubmit)="onLogin()">
                 <h1>Login</h1>
                 <p class="text-medium-emphasis">Sign In to your account</p>
+                <div *ngIf="f['username'].touched && (f['username']['errors'] && f['username']['errors']['required'])" class="error-message">
+                  Username is required
+                </div>
                 <c-input-group class="mb-3">
                   <span cInputGroupText>
                     <svg cIcon name="cilUser"></svg>
                   </span>
-                  <input autoComplete="username" cFormControl placeholder="Username" />
+                  <input 
+                    autoComplete="username" 
+                    cFormControl 
+                    placeholder="Username"
+                    formControlName="username"
+                    />
                 </c-input-group>
+                <div *ngIf="f['passwd'].touched && (f['passwd']['errors'] && f['passwd']['errors']['required'])" class="error-message">
+                  Password is required
+                </div>
                 <c-input-group class="mb-4">
                   <span cInputGroupText>
                     <svg cIcon name="cilLockLocked"></svg>
@@ -23,11 +34,12 @@
                     cFormControl
                     placeholder="Password"
                     type="password"
+                    formControlName="passwd"
                   />
                 </c-input-group>
                 <c-row>
                   <c-col xs="6">
-                    <button cButton class="px-4" color="primary">
+                    <button cButton class="px-4" color="primary" type="submit">
                       Login
                     </button>
                   </c-col>
