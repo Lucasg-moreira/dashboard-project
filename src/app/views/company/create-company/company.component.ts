@@ -1,11 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { HttpRequest } from 'src/app/services/http-request.service';
 
-import { IconSetService } from '@coreui/icons-angular'
-import { cilLink, cilBuilding } from '@coreui/icons';
+
 
 @Component({
   selector: 'app-company',
@@ -29,13 +28,11 @@ export class CompanyComponent implements OnInit {
     private formBuilder: FormBuilder,
     private httpService: HttpRequest,
     private alert: MatSnackBar,
-    private iconSet: IconSetService
   ) {
     this.myForm = this.formBuilder.group({
       id: ['', Validators.required],
       urlCompany: ['', [Validators.required, Validators.pattern(this.urlPattern)]],
     })
-    iconSet.icons = { ...iconSet.icons, cilLink, cilBuilding}
   }
 
   ngOnInit(): void {
@@ -85,6 +82,16 @@ export class CompanyComponent implements OnInit {
     if (event) {
       this.getCompanys();
       return
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    // React to changes in the 'data' input property
+    if (changes['showNewCompany']) {
+      const currentValue = changes['showNewCompany'].currentValue;
+      const previousValue = changes['showNewCompany'].previousValue;
+
+      console.log('Data changed from', previousValue, 'to', currentValue);
     }
   }
 }

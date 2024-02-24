@@ -5,6 +5,8 @@ import { IconSetService } from '@coreui/icons-angular';
 import { iconSubset } from './icons/icon-subset';
 import { Title } from '@angular/platform-browser';
 
+import { cilLink, cilBuilding } from '@coreui/icons';
+
 @Component({
   selector: 'app-root',
   template: '<router-outlet></router-outlet>',
@@ -19,7 +21,7 @@ export class AppComponent implements OnInit {
   ) {
     titleService.setTitle(this.title);
     // iconSet singleton
-    iconSetService.icons = { ...iconSubset };
+    iconSetService.icons = { ...iconSubset, cilLink, cilBuilding };
   }
 
   ngOnInit(): void {

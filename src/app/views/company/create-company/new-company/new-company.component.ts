@@ -36,10 +36,6 @@ export class NewCompanyComponent {
     this.onClosed.emit(false);
   }
 
-  handleChangeVisible(event: any) {
-    this.isVisibleNewCompany = event;
-  }
-
   onSubmit() {
     this.httpService.createCompany(this.myForm.value).subscribe(
       {

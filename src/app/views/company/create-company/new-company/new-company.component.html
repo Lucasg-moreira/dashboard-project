@@ -1,10 +1,10 @@
-<c-modal id="liveDemoModal" [visible]="isVisibleNewCompany" (visibleChange)="handleChangeVisible($event)">
+<c-modal id="liveDemoModal" [visible]="isVisibleNewCompany" backdrop="static">
     <c-modal-header>
         <h5 cModalTitle>Crie uma empresa!</h5>
         <button (click)="toggleVisible()" cButtonClose></button>
     </c-modal-header>
     <c-modal-body>
-        <c-card class="mx-4">
+        <c-card class="mx-4" >
             <c-card-body class="p-4">
                 <form cForm [formGroup]="myForm" (ngSubmit)="onSubmit()">
                     <div *ngIf="f['nameCompany'].touched && (f['nameCompany']['errors'] && f['nameCompany']['errors']['required'])" class="error-message">
