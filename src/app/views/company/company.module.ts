@@ -2,17 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CompanyComponent } from './create-company/company.component';
 import { CompanyRoutingModule } from './company-routing.module'
-import { ButtonModule, CardModule, FormModule, GridModule, SpinnerModule } from '@coreui/angular';
+import { ButtonModule, CardModule, FormModule, GridModule, ModalModule, SpinnerModule } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListCompanyComponent } from './list-company/list-company.component';
 
 import { SafePipe } from './pipe-safe-url/safe-url.pipe'
-
+import { NewCompanyComponent } from './create-company/new-company/new-company.component'
 @NgModule({
   declarations: [
     CompanyComponent,
     ListCompanyComponent,
+    NewCompanyComponent,
     SafePipe
   ],
   imports: [
@@ -24,8 +25,10 @@ import { SafePipe } from './pipe-safe-url/safe-url.pipe'
     GridModule,
     IconModule,
     ReactiveFormsModule,
+    FormsModule,
     SpinnerModule,
-    ButtonModule
+    ButtonModule,
+    ModalModule
   ]
 })
 

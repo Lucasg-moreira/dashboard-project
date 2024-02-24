@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -12,10 +12,16 @@ import { cilLink } from '@coreui/icons';
   templateUrl: './company.component.html',
   styleUrl: './company.component.scss'
 })
-export class CompanyComponent {
-  myForm: FormGroup;
+export class CompanyComponent implements OnInit {
+  public myForm: FormGroup;
+
   public isRepeatedPassEquals: boolean = false;
-  
+
+  @Input()
+  public showNewCompany = false;
+
+  public companys: any[] = [];
+
   private urlPattern = '^((http|https)://)?([\\w-]+\\.)+[\\w-]+(/[\\w- ./?%&=]*)?$';
 
   constructor(
@@ -26,15 +32,24 @@ export class CompanyComponent {
     private iconSet: IconSetService
   ) {
     this.myForm = this.formBuilder.group({
-      nameCompany: ['', Validators.required],
+      idCompany: ['', Validators.required],
       urlCompany: ['', [Validators.required, Validators.pattern(this.urlPattern)]],
     })
-    console.log(iconSet.icons)
     iconSet.icons = { ...iconSet.icons, cilLink }
+  }
+
+  ngOnInit(): void {
+    this.getCompanys();
   }
 
   get f() {
     return this.myForm.controls;
+  }
+
+  private getCompanys() {
+    this.httpService.getCompanys().subscribe(result => {
+      this.companys = result;
+    });
   }
 
   onSubmit() {
@@ -43,7 +58,7 @@ export class CompanyComponent {
       return
     }
 
-    this.httpService.createCompanyDashboard(this.myForm.value).subscribe(
+    this.httpService.createCompanyUrl(this.myForm.value).subscribe(
       {
         next: (v) => console.log(v),
         error: (e) => {
@@ -56,5 +71,20 @@ export class CompanyComponent {
         }
       }
     )
+  }
+
+  onSelectChange(event: any) {
+    const selectedValue = event.target.value;
+    if (selectedValue == '-1')
+      this.showNewCompany = !this.showNewCompany;
+  }
+
+  public onClosed(event: any) {
+    this.showNewCompany = !this.showNewCompany;
+
+    if (event) {
+      this.getCompanys();
+      return
+    }
   }
 }
