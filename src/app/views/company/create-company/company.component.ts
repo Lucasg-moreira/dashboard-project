@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { HttpRequest } from 'src/app/services/http-request.service';
 
 import { IconSetService } from '@coreui/icons-angular'
-import { cilLink } from '@coreui/icons';
+import { cilLink, cilBuilding } from '@coreui/icons';
 
 @Component({
   selector: 'app-company',
@@ -35,7 +35,7 @@ export class CompanyComponent implements OnInit {
       id: ['', Validators.required],
       urlCompany: ['', [Validators.required, Validators.pattern(this.urlPattern)]],
     })
-    iconSet.icons = { ...iconSet.icons, cilLink }
+    iconSet.icons = { ...iconSet.icons, cilLink, cilBuilding}
   }
 
   ngOnInit(): void {

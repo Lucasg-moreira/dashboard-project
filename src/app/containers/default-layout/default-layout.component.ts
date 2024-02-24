@@ -16,7 +16,6 @@ export class DefaultLayoutComponent {
   public navItems = navItems.filter(el => {
     return this.isAdmin ? el : !this.adminOnlyItems.includes(el.url as string)
   });
-
-
+  
   constructor() {}
 }
