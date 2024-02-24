@@ -32,7 +32,7 @@ export class CompanyComponent implements OnInit {
     private iconSet: IconSetService
   ) {
     this.myForm = this.formBuilder.group({
-      idCompany: ['', Validators.required],
+      id: ['', Validators.required],
       urlCompany: ['', [Validators.required, Validators.pattern(this.urlPattern)]],
     })
     iconSet.icons = { ...iconSet.icons, cilLink }

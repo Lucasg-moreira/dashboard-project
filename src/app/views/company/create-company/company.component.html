@@ -6,14 +6,14 @@
           <c-card class="mx-4">
             <c-card-body class="p-4">
               <form cForm [formGroup]="myForm" (ngSubmit)="onSubmit()">
-                <div *ngIf="f['idCompany'].touched && (f['idCompany']['errors'] && f['idCompany']['errors']['required'])" class="error-message">
+                <div *ngIf="f['id'].touched && (f['id']['errors'] && f['id']['errors']['required'])" class="error-message">
                   Name company is required
                 </div>
                 <c-input-group class="mb-3">
                   <span cInputGroupText>
                     <svg cIcon name="cil-people"></svg>
                   </span>
-                  <select aria-label="company" formControlName="idCompany" (change)="onSelectChange($event)" cSelect>
+                  <select aria-label="company" formControlName="id" (change)="onSelectChange($event)" cSelect>
                     <option value="-1">Create a new company...</option>
                     <option *ngFor="let item of companys" [value]="item.id">{{ item.nameCompany }}</option>
                   </select>
