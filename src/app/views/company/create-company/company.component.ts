@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { HttpRequest } from 'src/app/services/http-request.service';
+import { alert } from 'src/app/utils';
 
 
 
@@ -59,11 +60,11 @@ export class CompanyComponent implements OnInit {
       {
         next: (v) => console.log(v),
         error: (e) => {
-          this.alert.open('An error occurred!')
+          alert(this, 'An error occurred!');
           console.error(e)
         },
         complete: () => {
-          this.alert.open('Dashboard created!')
+          alert(this, 'Dashboard created!');
           this.router.navigate(['empresas/listar']);
         }
       }

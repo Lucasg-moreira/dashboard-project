@@ -14,6 +14,7 @@
                     <svg cIcon name="cil-people"></svg>
                   </span>
                   <select aria-label="company" formControlName="id" (change)="onSelectChange($event)" cSelect>
+                    <option value="" disabled selected>Select an option</option>
                     <option value="-1">Create a new company...</option>
                     <option *ngFor="let item of companys" [value]="item.id">{{ item.nameCompany }}</option>
                   </select>

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpRequest } from 'src/app/services/http-request.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { saveInLocal } from 'src/app/utils';
+import { alert, saveInLocal } from 'src/app/utils';
 
 @Component({
   selector: 'app-register',
@@ -50,11 +50,11 @@ export class RegisterComponent implements OnInit{
       {
         next: (v) => console.log(v),
         error: (e) => {
-          this.alert.open('An error occurred!');
+          alert(this, 'An error occurred!');
           console.error(e);
         },
         complete: () => {
-          this.alert.open('User created!');
+          alert(this, 'User created!');
           saveInLocal(this.myForm.value);
           this.router.navigate(['/dashboard']);
         }
@@ -65,9 +65,6 @@ export class RegisterComponent implements OnInit{
   onChangePass() {
     const { passwd, repeatedPass } = this.f;
 
-    if (passwd.value === repeatedPass.value)
-      this.isRepeatedPassEquals = true;
-    else
-      this.isRepeatedPassEquals = false;
+    this.isRepeatedPassEquals = passwd.value === repeatedPass.value
   }
 }
