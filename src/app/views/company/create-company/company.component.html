@@ -5,7 +5,7 @@
         <c-col lg="7" md="9" xl="6">
           <c-card class="mx-4">
             <c-card-body class="p-4">
-              <form cForm [formGroup]="myForm" (ngSubmit)="onSubmit()">
+              <form *ngIf="isAdmin; else elseBlock" cForm [formGroup]="myForm" (ngSubmit)="onSubmit()">
                 <div *ngIf="f['id'].touched && (f['id']['errors'] && f['id']['errors']['required'])" class="error-message">
                   Nome da empresa é obrigatório
                 </div>
@@ -13,6 +13,7 @@
                   <span cInputGroupText>
                     <svg cIcon name="cil-people"></svg>
                   </span>
+
                   <select aria-label="company" formControlName="id" (change)="onSelectChange($event)" cSelect>
                     <option value="" disabled selected>Selecione uma opção</option>
                     <option value="-1">Crie uma nova empresa...</option>
@@ -20,9 +21,12 @@
                   </select>
                 </c-input-group>
 
+                <div *ngIf="f['nameDashboard'].touched && (f['nameDashboard']['errors'] && f['nameDashboard']['errors']['required'])" class="error-message">
+                  Nome do dashboard é obrigatório!
+                </div>
                 <c-input-group class="mb-3">
                   <span cInputGroupText>
-                    <svg cIcon name="cil-link"></svg>
+                    <svg cIcon name="cilNotes"></svg>
                   </span>
                   <input autoComplete="name" cFormControl placeholder="Nome do dashboard" formControlName="nameDashboard"/>
                 </c-input-group>
@@ -44,6 +48,12 @@
                   <button cButton type="submit" color="success">Criar empresa!</button>
                 </div>
               </form>
+              
+              <ng-template #elseBlock>
+                <div>
+                  <h4>{{ userCompany }}</h4>
+                </div>
+              </ng-template>
             </c-card-body>
           </c-card>
         </c-col>

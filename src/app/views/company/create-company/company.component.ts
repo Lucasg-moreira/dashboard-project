@@ -2,10 +2,8 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { forkJoin } from 'rxjs';
 import { HttpRequest } from 'src/app/services/http-request.service';
-import { alert } from 'src/app/utils';
-
+import { alert, getUserLogged, isUserAdmin } from 'src/app/utils';
 
 
 @Component({
@@ -16,14 +14,16 @@ import { alert } from 'src/app/utils';
 export class CompanyComponent implements OnInit {
   public myForm: FormGroup;
 
+  public user: any = getUserLogged();
+  public isAdmin: boolean = isUserAdmin();
   public isRepeatedPassEquals: boolean = false;
+
+  public userCompany: string = '';
 
   @Input()
   public showNewCompany = false;
   public companys: any[] = [];
-
   public table: any[] = [];
-
   private urlPattern = '^((http|https)://)?([\\w-]+\\.)+[\\w-]+(/[\\w- ./?%&=]*)?$';
 
   constructor(
@@ -53,9 +53,12 @@ export class CompanyComponent implements OnInit {
       {
         next: (result) => {
           this.table = result;
-          
+
           if (id)
             this.table = this.table.filter(el => el.id == id);
+
+          if (!this.isAdmin)
+            this.table = this.table.filter(el => el.id == this.user.company);
         },
         error: error => {
           console.error('Error:', error);
@@ -67,6 +70,12 @@ export class CompanyComponent implements OnInit {
   private getCompanys() {
     this.httpService.getCompanys().subscribe(result => {
       this.companys = result;
+
+      if (!this.user)
+        throw new Error('Usuário não encontrado!');
+
+      let company = result.find((el: any) => el.id === this.user.company);
+      this.userCompany = company?.nameCompany;
     });
   }
 

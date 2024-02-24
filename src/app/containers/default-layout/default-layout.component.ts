@@ -10,12 +10,7 @@ import { isUserAdmin } from 'src/app/utils'
   styleUrls: ['./default-layout.component.scss'],
 })
 export class DefaultLayoutComponent {
-  private adminOnlyItems = ['empresas/criar']
-  private isAdmin = isUserAdmin()
-
-  public navItems = navItems.filter(el => {
-    return this.isAdmin ? el : !this.adminOnlyItems.includes(el.url as string)
-  });
+  public navItems = navItems;
   
   constructor() {}
 }
