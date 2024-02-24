@@ -18,6 +18,19 @@
                 <input autoComplete="name" cFormControl placeholder="Username" formControlName="username"/>
               </c-input-group>
 
+              <div *ngIf="f['company'].touched && (f['company']['errors'] && f['company']['errors']['required'])" class="error-message">
+                Company is required
+              </div>
+              <c-input-group class="mb-3">
+                <span cInputGroupText>
+                  <svg cIcon name="cilPeople"></svg>
+                </span>
+                <select aria-label="company" formControlName="company" cSelect>
+                  <option value="" disabled selected>Choose an option...</option>
+                  <option *ngFor="let item of companys" [value]="item.id">{{ item.nameCompany }}</option>
+                </select>
+              </c-input-group>
+
               <div *ngIf="f['email'].touched && (f['email']['errors'] && f['email']['errors']['required'])" class="error-message">
                 Email is required
               </div>
