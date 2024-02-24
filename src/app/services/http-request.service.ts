@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { getMultipleValuesInSingleSelectionError } from '@angular/cdk/collections';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +28,14 @@ export class HttpRequest {
 
   createCompanyUrl(postData: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/companyUrl`, postData);
+  }
+
+  getCompanyUrlById(id: string) {
+    return this.http.get(`${this.baseUrl}/companyUrl`).pipe(
+      map(res => {
+        return Object.values(res).filter((el: any) => el.id == id);
+      })
+    )
   }
 
   getCompanyUrl(): Observable<any> {

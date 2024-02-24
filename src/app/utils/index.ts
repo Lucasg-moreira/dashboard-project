@@ -12,4 +12,8 @@ export const saveInLocal = (user: any) => {
     delete user.repeatedPass;
 
     localStorage.setItem('loggedUser', JSON.stringify(user));
-  }
+}
+
+export const getUserLogged = () => {
+    return JSON.parse(localStorage.getItem('loggedUser') as string);
+}
