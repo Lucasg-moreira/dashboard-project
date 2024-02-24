@@ -7,14 +7,33 @@ import { HttpRequest } from 'src/app/services/http-request.service';
   styleUrl: './list-company.component.scss'
 })
 export class ListCompanyComponent {
-  public companyList: any = null;
+  public isLoading = false;
+  public companyList: Array<any> = [];
+  public maxLength = 0;
+  public currentIndex = 0;
+  public currentUrl = '';
 
-  constructor(private httpRequest: HttpRequest) {
-  }
+  constructor(private httpRequest: HttpRequest) {}
 
   ngOnInit() {
-    this.httpRequest.getCompanyDashboard().subscribe(res => 
-      this.companyList = res 
-    )
+    this.isLoading = true;
+
+    this.httpRequest.getCompanyDashboard().subscribe(res => {
+      this.companyList = res;
+      this.maxLength = this.companyList.length;
+      this.isLoading = false;
+    })
+  }
+
+  onItemChange(event: any) {
+    console.log(event);
+  }
+
+  next() {
+    this.currentUrl = this.companyList[this.currentIndex++].urlCompany
+  }
+
+  previous() {
+    this.currentUrl = this.companyList[this.currentIndex--].urlCompany
   }
 }
