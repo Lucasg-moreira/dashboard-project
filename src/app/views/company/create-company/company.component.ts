@@ -41,25 +41,33 @@ export class CompanyComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCompanys();
+    this.getDataTable();
   }
 
   get f() {
     return this.myForm.controls;
   }
 
-  private getCompanys() {
-    forkJoin([this.httpService.getCompanys(), this.httpService.getCompanyUrl()]).subscribe(
+  private getDataTable(id?: string) {
+    this.httpService.getCompanyUrl().subscribe(
       {
-        next: ([result1, result2]) => {
-          // Both observables have completed
-          this.companys = result1;
-          this.table = result2;
+        next: (result) => {
+          this.table = result;
+          
+          if (id)
+            this.table = this.table.filter(el => el.id == id);
         },
         error: error => {
           console.error('Error:', error);
         }
       }
     )
+  }
+
+  private getCompanys() {
+    this.httpService.getCompanys().subscribe(result => {
+      this.companys = result;
+    });
   }
 
   onSubmit() {
@@ -90,6 +98,8 @@ export class CompanyComponent implements OnInit {
       this.showNewCompany = !this.showNewCompany;
       return;
     }
+
+    this.getDataTable(this.f['id'].value);
   }
 
   public onClosed(event: any) {
