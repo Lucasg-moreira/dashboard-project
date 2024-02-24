@@ -18,7 +18,7 @@ export class ListCompanyComponent {
   ngOnInit() {
     this.isLoading = true;
 
-    this.httpRequest.getCompanyDashboard().subscribe(res => {
+    this.httpRequest.getCompanys().subscribe(res => {
       this.companyList = res;
       this.maxLength = this.companyList.length;
       this.isLoading = false;

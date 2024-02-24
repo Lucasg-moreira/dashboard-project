@@ -27,13 +27,13 @@ export class RegisterComponent implements OnInit{
       company: ['', [Validators.required]],
       passwd: ['', [Validators.required]],
       repeatedPass: ['', Validators.required]
-    })
+    });
   }
 
   ngOnInit(): void {
-      this.httpService.getCompanyDashboard().subscribe(result => {
-        this.companys = result
-      })
+    this.httpService.getCompanys().subscribe(result => {
+      this.companys = result;
+    })
   }
 
   get f() {
@@ -50,12 +50,12 @@ export class RegisterComponent implements OnInit{
       {
         next: (v) => console.log(v),
         error: (e) => {
-          this.alert.open('An error occurred!')
-          console.error(e)
+          this.alert.open('An error occurred!');
+          console.error(e);
         },
         complete: () => {
-          this.alert.open('User created!')
-          saveInLocal(this.myForm.value)
+          this.alert.open('User created!');
+          saveInLocal(this.myForm.value);
           this.router.navigate(['/dashboard']);
         }
       }
