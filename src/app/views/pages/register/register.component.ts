@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpRequest } from 'src/app/services/http-request.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { saveInLocal } from 'src/app/utils';
 
 @Component({
   selector: 'app-register',
@@ -47,6 +48,7 @@ export class RegisterComponent {
         },
         complete: () => {
           this.alert.open('User created!')
+          saveInLocal(this.myForm.value)
           this.router.navigate(['/dashboard']);
         }
       }

@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { saveInLocal } from 'src/app/utils';
 
 @Component({
   selector: 'app-login',
@@ -32,14 +33,16 @@ export class LoginComponent {
     const { username, passwd } = this.f;
 
     this.httpService.getUsers().subscribe(users => {
-      const isLoginValid = users.find(u => u.username === username.value && u.passwd === passwd.value)
+      const loggedUser = users.find(u => u.username === username.value && u.passwd === passwd.value)
 
-      if (isLoginValid) {
+      if (loggedUser) {
         this.showAlert('Login successful!');
+        saveInLocal(loggedUser);
         this.router.navigate(['/dashboard']);
       }
       else {
         this.showAlert('Check login and password!');
+        this.myForm.markAllAsTouched();
       }
     });
   }
