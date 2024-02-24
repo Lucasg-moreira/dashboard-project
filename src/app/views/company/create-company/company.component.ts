@@ -2,6 +2,7 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { forkJoin } from 'rxjs';
 import { HttpRequest } from 'src/app/services/http-request.service';
 import { alert } from 'src/app/utils';
 
@@ -19,8 +20,9 @@ export class CompanyComponent implements OnInit {
 
   @Input()
   public showNewCompany = false;
-
   public companys: any[] = [];
+
+  public table: any[] = [];
 
   private urlPattern = '^((http|https)://)?([\\w-]+\\.)+[\\w-]+(/[\\w- ./?%&=]*)?$';
 
@@ -33,6 +35,7 @@ export class CompanyComponent implements OnInit {
     this.myForm = this.formBuilder.group({
       id: ['', Validators.required],
       urlCompany: ['', [Validators.required, Validators.pattern(this.urlPattern)]],
+      nameDashboard: ['', [Validators.required]]
     })
   }
 
@@ -45,9 +48,18 @@ export class CompanyComponent implements OnInit {
   }
 
   private getCompanys() {
-    this.httpService.getCompanys().subscribe(result => {
-      this.companys = result;
-    });
+    forkJoin([this.httpService.getCompanys(), this.httpService.getCompanyUrl()]).subscribe(
+      {
+        next: ([result1, result2]) => {
+          // Both observables have completed
+          this.companys = result1;
+          this.table = result2;
+        },
+        error: error => {
+          console.error('Error:', error);
+        }
+      }
+    )
   }
 
   onSubmit() {
@@ -73,8 +85,11 @@ export class CompanyComponent implements OnInit {
 
   onSelectChange(event: any) {
     const selectedValue = event.target.value;
-    if (selectedValue == '-1')
+
+    if (selectedValue == '-1') {
       this.showNewCompany = !this.showNewCompany;
+      return;
+    }
   }
 
   public onClosed(event: any) {
@@ -87,7 +102,6 @@ export class CompanyComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    // React to changes in the 'data' input property
     if (changes['showNewCompany']) {
       const currentValue = changes['showNewCompany'].currentValue;
       const previousValue = changes['showNewCompany'].previousValue;

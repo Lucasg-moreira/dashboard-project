@@ -1,0 +1,20 @@
+.container {
+    text-align: center;
+    /* Center align the content */
+}
+
+table {
+    width: 100%;
+    /* Set the width of the table to 80% of its container */
+    margin: auto;
+    /* Center the table horizontally */
+    border-collapse: collapse;
+    /* Collapse the table borders */
+}
+
+th,
+td {
+    /* Add borders to table cells */
+    padding: 20px;
+    /* Add padding to table cells */
+}

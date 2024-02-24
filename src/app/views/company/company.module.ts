@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CompanyComponent } from './create-company/company.component';
 import { CompanyRoutingModule } from './company-routing.module'
-import { ButtonModule, CardModule, FormModule, GridModule, ModalModule, SpinnerModule } from '@coreui/angular';
+import { AccordionModule, ButtonModule, CardModule, FormModule, GridModule, ListGroupModule, ModalModule, SharedModule, SpinnerModule, TableModule } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListCompanyComponent } from './list-company/list-company.component';
@@ -28,7 +28,11 @@ import { NewCompanyComponent } from './create-company/new-company/new-company.co
     FormsModule,
     SpinnerModule,
     ButtonModule,
-    ModalModule
+    ModalModule,
+    AccordionModule,
+    ListGroupModule,
+    SharedModule,
+    TableModule
   ]
 })
 

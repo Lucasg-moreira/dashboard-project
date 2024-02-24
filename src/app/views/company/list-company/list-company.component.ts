@@ -27,7 +27,7 @@ export class ListCompanyComponent implements OnInit{
       this.companyList = res;
       this.isLoading = false;
       this.maxLength = res.length;
-    })
+    });
   }
 
   next() {

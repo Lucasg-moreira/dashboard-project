@@ -7,24 +7,31 @@
             <c-card-body class="p-4">
               <form cForm [formGroup]="myForm" (ngSubmit)="onSubmit()">
                 <div *ngIf="f['id'].touched && (f['id']['errors'] && f['id']['errors']['required'])" class="error-message">
-                  Name company is required
+                  Nome da empresa é obrigatório
                 </div>
                 <c-input-group class="mb-3">
                   <span cInputGroupText>
                     <svg cIcon name="cil-people"></svg>
                   </span>
                   <select aria-label="company" formControlName="id" (change)="onSelectChange($event)" cSelect>
-                    <option value="" disabled selected>Select an option</option>
-                    <option value="-1">Create a new company...</option>
+                    <option value="" disabled selected>Selecione uma opção</option>
+                    <option value="-1">Crie uma nova empresa...</option>
                     <option *ngFor="let item of companys" [value]="item.id">{{ item.nameCompany }}</option>
                   </select>
                 </c-input-group>
 
+                <c-input-group class="mb-3">
+                  <span cInputGroupText>
+                    <svg cIcon name="cil-link"></svg>
+                  </span>
+                  <input autoComplete="name" cFormControl placeholder="Nome do dashboard" formControlName="nameDashboard"/>
+                </c-input-group>
+
                 <div *ngIf="f['urlCompany'].touched && (f['urlCompany']['errors'] && f['urlCompany']['errors']['required'])" class="error-message">
-                  Url company is required
+                  Url é obrigatória!
                 </div>
                 <div *ngIf="f['urlCompany'].touched && (f['urlCompany']['errors'] && f['urlCompany']['errors']['pattern'])" class="error-message">
-                  Insert a valid URL!
+                  Insira uma URL válida!
                 </div>
                 <c-input-group class="mb-3">
                   <span cInputGroupText>
@@ -39,6 +46,27 @@
               </form>
             </c-card-body>
           </c-card>
+        </c-col>
+      </c-row>
+
+      <c-row class="justify-content-center" style="margin-top: 5vh;">
+        <c-col lg="9" md="12" xl="6">
+          <table cTable style="align-items: center;">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome do dashboard</th>
+                <th scope="col">Url</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of table | keyvalue">
+                <th scope="row">{{ item.key }}</th>
+                <td>{{ item.value.nameDashboard }}</td>
+                <td>{{ item.value.urlCompany }}</td>
+              </tr>
+            </tbody>
+          </table>
         </c-col>
       </c-row>
     </c-container>
