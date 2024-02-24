@@ -19,11 +19,19 @@ export class HttpRequest {
     return this.http.get<any>(`${this.baseUrl}/users`)
   }
 
-  createCompanyDashboard(postData: any): Observable<any> {
+  createCompany(postData: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/company`, postData);
   }
 
-  getCompanyDashboard(): Observable<any> {
+  getCompanys(): Observable<any> {
     return this.http.get(`${this.baseUrl}/company`);
+  }
+
+  createCompanyUrl(postData: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/companyUrl`, postData);
+  }
+
+  getCompanyUrl(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/companyUrl`);
   }
 }

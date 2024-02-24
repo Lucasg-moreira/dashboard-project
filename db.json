@@ -7,10 +7,109 @@
       "passwd": "admin",
       "repeatedPass": "admin",
       "isAdmin": true
+    },
+    {
+      "id": "444c",
+      "username": "lucas",
+      "email": "lucas@lucas",
+      "passwd": "123",
+      "repeatedPass": "123"
+    },
+    {
+      "id": "c823",
+      "username": "lucas",
+      "email": "lucasmoreira.gabriel2004@gmail.com",
+      "company": "1069",
+      "passwd": "123",
+      "repeatedPass": "123"
+    },
+    {
+      "id": "e583",
+      "username": "tmp",
+      "email": "tmp@tmp.com",
+      "company": "9c77",
+      "passwd": "123",
+      "repeatedPass": "123"
     }
   ],
   "company": [
-
+    {
+      "id": "1069",
+      "nameCompany": "empresa 1"
+    },
+    {
+      "id": "9a6b",
+      "nameCompany": "empresa 2"
+    },
+    {
+      "id": "8411",
+      "nameCompany": "empresa 3"
+    },
+    {
+      "id": "fea1",
+      "nameCompany": "empresa 4"
+    },
+    {
+      "id": "cfe2",
+      "nameCompany": "teste"
+    },
+    {
+      "id": "0beb",
+      "nameCompany": "tmp"
+    },
+    {
+      "id": "1b6e",
+      "nameCompany": "aa"
+    },
+    {
+      "id": "c22c",
+      "nameCompany": "aa"
+    },
+    {
+      "id": "9298",
+      "nameCompany": "testetetete"
+    },
+    {
+      "id": "2ecd",
+      "nameCompany": "lucas"
+    },
+    {
+      "id": "8fe2",
+      "nameCompany": "aaaa"
+    },
+    {
+      "id": "d989",
+      "nameCompany": "JOSE SOIARA"
+    },
+    {
+      "id": "7a60",
+      "nameCompany": "thiagao"
+    }
+  ],
+  "companyUrl": [
+    {
+      "id": "1069",
+      "urlCompany": "https://www.unialfa.com.br/"
+    },
+    {
+      "id": "1069",
+      "urlCompany": "https://www.irancho.com.br"
+    },
+    {
+      "id": "0eda",
+      "idCompany": "1069",
+      "urlCompany": "https://chat.openai.com/"
+    },
+    {
+      "id": "799d",
+      "idCompany": "d989",
+      "urlCompany": "https://www.infragistics.com/products/ignite-ui-angular/angular/components/general/wpf-to-angular-guide/two-way-binding"
+    },
+    {
+      "id": "d052",
+      "idCompany": "1069",
+      "urlCompany": "https://angular.io/guide/component-interaction"
+    }
   ],
   "profile": {
     "name": "typicode"
