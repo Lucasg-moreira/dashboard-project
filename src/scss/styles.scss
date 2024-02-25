@@ -27,5 +27,17 @@ $enable-rtl: true;
     font-size: 0.875rem;
 }
 
+.orange-background {
+    background-color: #F27405;
+    color: white;
+}
+
+button.orange-background {
+    &:hover {
+        color: white;
+        background-color: #F27405;
+    }
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

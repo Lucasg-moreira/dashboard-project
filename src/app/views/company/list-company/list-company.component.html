@@ -23,9 +23,9 @@
             </ng-template>
         </c-row>
             <c-row class="justify-content-between" *ngIf="companyList.length">
-                <button cButton color="dark" (click)="previous()" style="width: 10%; margin-left: 10px;">previous</button>
+                <button cButton class="orange-background" (click)="previous()" style="width: 10%; margin-left: 10px;">Anterior</button>
                  {{currentIndex + 1}} / {{maxLength}}
-                <button cButton color="dark" (click)="next()" style="width: 10%; margin-right: 10px">next</button>
+                <button cButton class="orange-background" (click)="next()" style="width: 10%; margin-right: 10px">Próximo</button>
             </c-row>
     </c-container>
 </div>

@@ -72,7 +72,7 @@ const routes: Routes = [
       },
       {
         path: 'empresas',
-        title: 'Empresas',
+        title: 'Winnercon',
             loadChildren: () =>
               import('./views/company/company.module').then((m) => m.CompanyModule),
       },

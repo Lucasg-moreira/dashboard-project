@@ -8,17 +8,17 @@
             <c-card-body class="p-4">
                 <form cForm [formGroup]="myForm" (ngSubmit)="onSubmit()">
                     <div *ngIf="f['nameCompany'].touched && (f['nameCompany']['errors'] && f['nameCompany']['errors']['required'])" class="error-message">
-                        Name company is required
+                        Nome da empresa é obrigatório
                     </div>
                     <c-input-group class="mb-3">
                         <span cInputGroupText>
                             <svg cIcon name="cilPeople"></svg>
                         </span>
-                        <input autoComplete="name" cFormControl placeholder="Company name" formControlName="nameCompany" [(ngModel)]="myForm.value.nameCompany"/>
+                        <input autoComplete="name" cFormControl placeholder="Nome da empresa" formControlName="nameCompany" [(ngModel)]="myForm.value.nameCompany"/>
                     </c-input-group>
 
                     <div class="d-grid">
-                        <button cButton type="submit" color="success">Salvar empresa</button>
+                        <button cButton type="submit" class="orange-background">Salvar empresa</button>
                     </div>
                 </form>
             </c-card-body>
