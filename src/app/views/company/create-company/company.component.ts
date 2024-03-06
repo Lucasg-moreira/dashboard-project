@@ -30,7 +30,6 @@ export class CompanyComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private httpService: HttpRequest,
-    private alert: MatSnackBar,
   ) {
     this.myForm = this.formBuilder.group({
       id: ['', Validators.required],
@@ -55,10 +54,10 @@ export class CompanyComponent implements OnInit {
           this.table = result;
 
           if (id)
-            this.table = this.table.filter(el => el.id == id);
+            this.table = this.table.filter(el => el.idCompany == id);
 
           if (!this.isAdmin)
-            this.table = this.table.filter(el => el.id == this.user.company);
+            this.table = this.table.filter(el => el.idCompany == this.user.company);
         },
         error: error => {
           console.error('Error:', error);

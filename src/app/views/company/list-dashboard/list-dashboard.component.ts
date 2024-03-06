@@ -10,7 +10,6 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
 export class ListDashboardComponent implements DoCheck {
   public dashboard: any = this.sharedDataService.data;
   public isLoading = false;
-  public currentIndex: number = 1;
 
   constructor(
     private sharedDataService: SharedDataService, 

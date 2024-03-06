@@ -6,7 +6,7 @@ import { Observable, map } from 'rxjs';
   providedIn: 'root'
 })
 export class HttpRequest {
-  private baseUrl = 'http://localhost:3000'; // Change this to your JSON Server URL
+  private baseUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { }
 

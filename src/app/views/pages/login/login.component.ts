@@ -38,7 +38,7 @@ export class LoginComponent {
       if (loggedUser) {
         this.showAlert('Login successful!');
         saveInLocal(loggedUser);
-        this.router.navigate(['/empresas/listar']);
+        this.router.navigate(['/empresas/criar']);
       }
       else {
         this.showAlert('Check login and password!');
