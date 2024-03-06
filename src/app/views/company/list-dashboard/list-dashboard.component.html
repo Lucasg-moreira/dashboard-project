@@ -1,0 +1,22 @@
+<div class="bg-light min-vh-70 d-flex flex-row align-items-center">
+	<c-container class="custom-column">
+		<c-row class="justify-content-center">
+			<c-col lg="7" md="9" xl="6" class="custom-column">
+				<div *ngIf="!dashboard" class="d-flex justify-content-center align-items-center no-dashboard">
+					Sem dashboards por enquanto!
+				</div>
+			</c-col>
+			<c-col lg="7" md="9" xl="6" class="custom-column">
+				<c-spinner *ngIf="isLoading"></c-spinner>
+				<iframe
+					*ngIf="!isLoading"
+					class="embed-responsive-item embed-responsive embed-responsive-16by9"
+					width="100%"
+					height="700hv"
+					[src]="dashboard.urlCompany | safe"
+					frameborder="0">
+				</iframe>
+			</c-col>
+		</c-row>
+	</c-container>
+</div>

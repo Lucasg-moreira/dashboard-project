@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CompanyComponent } from './create-company/company.component';
-import { ListCompanyComponent } from './list-company/list-company.component';
+import { ListDashboardComponent } from './list-dashboard/list-dashboard.component';
 
 const routes: Routes = [
   {
@@ -12,9 +12,9 @@ const routes: Routes = [
     }
   },
   {
-    path: 'listar',
-    component: ListCompanyComponent
-  }
+    path: 'listar/:id',
+    component: ListDashboardComponent
+  },
 ];
 
 @NgModule({

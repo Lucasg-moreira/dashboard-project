@@ -7,13 +7,15 @@ import { IconModule } from '@coreui/icons-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListCompanyComponent } from './list-company/list-company.component';
 
-import { SafePipe } from './pipe-safe-url/safe-url.pipe'
-import { NewCompanyComponent } from './create-company/new-company/new-company.component'
+import { SafePipe } from './pipe-safe-url/safe-url.pipe';
+import { NewCompanyComponent } from './create-company/new-company/new-company.component';
+import { ListDashboardComponent } from './list-dashboard/list-dashboard.component';
 @NgModule({
   declarations: [
     CompanyComponent,
     ListCompanyComponent,
     NewCompanyComponent,
+    ListDashboardComponent,
     SafePipe
   ],
   imports: [
