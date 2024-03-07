@@ -30,9 +30,10 @@ export class CompanyComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private httpService: HttpRequest,
+    private alert: MatSnackBar
   ) {
     this.myForm = this.formBuilder.group({
-      id: ['', Validators.required],
+      idCompany: ['', Validators.required],
       urlCompany: ['', [Validators.required, Validators.pattern(this.urlPattern)]],
       nameDashboard: ['', [Validators.required]]
     })
@@ -93,7 +94,7 @@ export class CompanyComponent implements OnInit {
         },
         complete: () => {
           alert(this, 'Dashboard created!');
-          this.router.navigate(['empresas/listar']);
+          this.router.navigate(['empresas/criar']);
         }
       }
     )
@@ -107,7 +108,7 @@ export class CompanyComponent implements OnInit {
       return;
     }
 
-    this.getDataTable(this.f['id'].value);
+    this.getDataTable(this.f['idCompany'].value);
   }
 
   public onClosed(event: any) {
@@ -116,15 +117,6 @@ export class CompanyComponent implements OnInit {
     if (event) {
       this.getCompanys();
       return
-    }
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['showNewCompany']) {
-      const currentValue = changes['showNewCompany'].currentValue;
-      const previousValue = changes['showNewCompany'].previousValue;
-
-      console.log('Data changed from', previousValue, 'to', currentValue);
     }
   }
 }

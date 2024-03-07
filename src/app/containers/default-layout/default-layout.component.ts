@@ -6,6 +6,7 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
 
 import { getUserLogged } from 'src/app/utils';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,7 +19,11 @@ export class DefaultLayoutComponent implements OnInit {
   public dashboardItems: any = [];
   private user = getUserLogged();
 
-  constructor(private httpRequestService: HttpRequest, private sharedDataService: SharedDataService, private router: Router) { }
+  constructor(
+    private httpRequestService: HttpRequest, 
+    private sharedDataService: SharedDataService, 
+    private router: Router,
+    private alert: MatSnackBar) { }
 
   ngOnInit(): void {
     this.navItems[2].children = [];
@@ -32,7 +37,15 @@ export class DefaultLayoutComponent implements OnInit {
           .filter((el: any) => this.user.company === el.idCompany)
           .map(this.hydrateDashboard)
       }
-      
+
+      if (!this.dashboardItems.length) {
+        delete this.navItems[2].url;
+        this.alert.open('Ainda não há itens no seu dashboard! Peça para um administrador cadastrar.', 'Close', {
+          duration: 8000
+        });
+        return
+      }
+
       this.navItems[2].children = this.dashboardItems;
     });
   }
@@ -50,7 +63,7 @@ export class DefaultLayoutComponent implements OnInit {
   selectDashboard(e: any) {
     const dashboardSelected = this.dashboardItems
       .find((el: any) => el.name === e.target.outerText);
-
+    
     if (!dashboardSelected)
       return;
 

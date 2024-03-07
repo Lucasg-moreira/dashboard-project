@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit{
         complete: () => {
           alert(this, 'User created!');
           saveInLocal(this.myForm.value);
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/empresas/criar']);
         }
       }
     )
