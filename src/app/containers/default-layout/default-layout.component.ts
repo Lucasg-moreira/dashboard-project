@@ -17,27 +17,34 @@ export class DefaultLayoutComponent implements OnInit {
   public navItems = navItems;
   public dashboardItems: any = [];
   private user = getUserLogged();
+
   constructor(private httpRequestService: HttpRequest, private sharedDataService: SharedDataService, private router: Router) { }
 
   ngOnInit(): void {
+    this.navItems[2].children = [];
+
     this.httpRequestService.getCompanyUrl().subscribe(res => {
-      this.dashboardItems = res
-        .filter((el: any) => this.user.company === el.idCompany)
-        .map((el: any) =>
-        ({ 
-          id: el.id,
-          idCompany: el.idCompany,
-          name: el.nameDashboard,
-          url: 'empresas/listar/' + el.id,
-          urlCompany:el.urlCompany
-        })
-      );
-
-      let i: number = this.navItems
-        .findIndex((el: any) => el['name'] === 'Dashboards cadastrados');
-
-      this.navItems[i].children = this.dashboardItems;
+      if (this.user.isAdmin) {
+        this.dashboardItems = res.map(this.hydrateDashboard);
+      }
+      else {
+        this.dashboardItems = res
+          .filter((el: any) => this.user.company === el.idCompany)
+          .map(this.hydrateDashboard)
+      }
+      
+      this.navItems[2].children = this.dashboardItems;
     });
+  }
+
+  private hydrateDashboard(element: any) {
+    return { 
+      id: element.id,
+      idCompany: element.idCompany,
+      name: element.nameDashboard,
+      url: 'empresas/listar/' + element.id,
+      urlCompany: element.urlCompany
+    }
   }
 
   selectDashboard(e: any) {

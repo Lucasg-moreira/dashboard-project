@@ -13,6 +13,7 @@ export const navItems: INavData[] = [
   {
     name: 'Dashboards cadastrados',
     url: 'empresas/listar',
-    iconComponent: { name: 'cilBuilding' }
+    iconComponent: { name: 'cilBuilding' },
+    children: []
   },
 ];
